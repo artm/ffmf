@@ -1,0 +1,9 @@
+# vim:set ft=make:
+
+%-recursive:
+ifneq (%(SUBDIRS),)
+	for d in $(SUBDIRS) ; do $(MAKE) -C $$d $* ; done 
+else
+	  @:
+endif
+	

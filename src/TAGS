@@ -1,0 +1,254 @@
+
+OSC-client.c,1029
+#define EMPTY 47,1768
+#define ONE_MSG_ARGS 48,1828
+#define NEED_COUNT 49,1907
+#define GET_ARGS 51,2012
+#define DONE 54,2170
+char *OSC_errorMessage;74,2572
+void OSC_initBuffer(84,2883
+void OSC_resetBuffer(90,3031
+int OSC_isBufferEmpty(99,3254
+int OSC_freeSpaceInBuffer(103,3337
+int OSC_isBufferDone(107,3437
+char *OSC_getPacket(111,3543
+int OSC_packetSize(124,3826
+#define CheckOverflow(CheckOverflow137,4155
+static void PatchMessageSize(144,4327
+int OSC_openBundle(150,4496
+int OSC_closeBundle(218,6296
+int OSC_closeAllBundles(248,7079
+int OSC_writeAddress(264,7477
+int OSC_writeAddressAndTypes(306,8606
+static int CheckTypeTag(327,9124
+int OSC_writeFloatArg(349,9804
+int OSC_writeFloatArgs(369,10200
+int OSC_writeIntArg(388,10653
+int OSC_writeStringArg(399,10906
+static int strlen(429,11640
+#define STRING_ALIGN_PAD 436,11763
+int OSC_effectiveStringLength(437,11791
+static int OSC_padString(447,12145
+static int OSC_padStringWithAnExtraStupidComma(457,12338
+static int OSC_WritePadding(468,12574
+
+OSC-client.h,200
+    typedef long int4byte;int4byte67,2894
+    typedef int int4byte;int4byte69,2927
+#define MAX_BUNDLE_NESTING 75,3134
+typedef struct OSCbuf_struct OSCbuf_struct83,3405
+} OSCbuf;OSCbuf98,4252
+
+debug.c,240
+int verbosity 5,58
+void RMR_set_verbosity(7,78
+void RMR_info(12,130
+void RMR_info0(22,262
+void RMR_error(31,375
+void RMR_error0(41,525
+void RMR_warning(50,647
+void RMR_warning0(62,836
+void RMR_debug(73,993
+void RMR_debug0(85,1178
+
+displayer.c,744
+#define EDGE_WIDTH 21,347
+#define MKTAG(MKTAG22,369
+#define ALIGN(ALIGN23,431
+static Display * dpy 25,475
+static int xv_port 26,504
+static Drawable main_win_drawable;28,532
+static GC main_win_gc;29,567
+static GTimer * frame_timer;30,590
+static int main_win_width,32,620
+static int main_win_width, main_win_height;32,620
+static GdkRectangle output_area;33,664
+typedef struct jam_frame_t jam_frame_t35,698
+} jam_frame_t;jam_frame_t40,807
+static jam_frame_t theFrame;42,823
+void jam_init_displayer(49,1041
+void update_xvimage(117,3301
+void jam_frame_display(127,3639
+void jam_displayer_configure_cb(163,4682
+int jam_frame_get_buffer(169,4777
+void jam_frame_release_buffer(239,7139
+static void jam_dispose_xvimage(249,7482
+
+eq.c,17
+void eq_MMX(1,0
+
+htmsocket.c,197
+#define UNIXDG_PATH 68,2152
+#define UNIXDG_TMP 69,2183
+} desc;desc81,2501
+void *OpenHTMSocket(85,2659
+static  bool sendudp(214,5933
+bool SendHTMSocket(225,6246
+void CloseHTMSocket(230,6429
+
+htmsocket.h,76
+#define TRUE 35,1532
+#define FALSE 36,1547
+typedef int bool;bool38,1570
+
+init.c,337
+const char * argp_program_version 13,202
+const char * argp_program_bug_address 14,252
+static char doc[15,308
+static char args_doc[16,367
+  SNAP1 18,411
+  SNAP2,19,426
+  INTER_SPEED,20,435
+static struct argp_option options[22,453
+static struct argp argp 33,1141
+static error_t parse_opt(35,1207
+void RMR_parse_cmdline(133,3578
+
+integrator.c,110
+integrator_t * RMR_integrator_new(2,20
+void RMR_integrator_add(12,276
+double RMR_integrator_current(30,722
+
+netosc.c,1055
+#define OSC_MSG_SIZE 23,366
+static GThread * recv_thread;27,461
+static GMutex * mutex;28,491
+static int running 29,514
+static int sock;30,538
+static int port;31,555
+static struct OSCReceiveMemoryTuner rt;32,572
+static GThread * cue_thread;35,636
+static int cue_running 36,665
+static GMutex * cue_mutex;38,694
+static GAsyncQueue * cue_queue 39,721
+static GList * cue_targets 41,761
+static void *xMalloc(43,797
+velocity_callback(48,878
+brightness_callback(57,1086
+panning_callback(66,1303
+go_x_callback(75,1505
+go_i_callback(82,1647
+go_m_callback(89,1789
+receive_packet(99,2001
+RMR_osc_thread(136,2869
+send_cue(176,3547
+RMR_osc_cue_thread(195,3893
+init_address_space(242,4964
+void RMR_osc_start(271,6162
+void RMR_osc_send_cue(351,8160
+void RMR_osc_stop(357,8261
+#define SMALLEST_POSITIVE_FLOAT 383,8843
+parse_message(386,8898
+static void parse_typetagged(406,9408
+static void parse_heuristically_typeguessed(471,10908
+#define STRING_ALIGN_PAD 510,11945
+char *DataAfterAlignedString(512,11973
+Boolean IsNiceString(555,13234
+
+pan.h,21
+#define _PAN_H_2,16
+
+playlist.c,681
+#define _GNU_SOURCE7,65
+static GList * playlist 26,360
+static playlist_entry_t * i_movie 27,409
+static GHashTable * s_hasj 28,469
+static void playlist_entry_free(30,522
+void playlist_reset(53,1102
+static void hasj_entry(71,1526
+static gboolean x_resolve(91,1970
+static void s_resolve(130,3094
+static int s_max_w 153,3650
+void playlist_get_s_max(155,3688
+static int cache_av_context(161,3767
+int playlist_open(215,5466
+playlist_entry_t * playlist_get_i_movie(291,7647
+playlist_entry_t * playlist_get_street1(296,7712
+playlist_entry_t * playlist_get_random_intersection(301,7777
+playlist_entry_t * playlist_get_next_intersection(315,8038
+int playlist_seek(346,8826
+
+playlist.h,168
+#define _PLAYLIST_H_9,134
+} playlist_entry_t;playlist_entry_t47,1024
+} playlist_exit_t;playlist_exit_t64,1563
+} playlist_frame2cue_t;playlist_frame2cue_t69,1642
+
+xinemf.c,1799
+  RMR_NONE,18,262
+  RMR_GO,19,274
+  RMR_BRIGHTNESS,20,284
+  RMR_X,21,302
+  RMR_SPEED,22,311
+} RMR_received_t;RMR_received_t33,439
+static GAsyncQueue * RMR_events_queue 35,458
+void RMR_go_i(41,569
+void RMR_go_x(48,724
+void RMR_go_1(56,882
+void RMR_set_brightness(64,1038
+void RMR_set_x(72,1243
+void RMR_set_speed(80,1403
+RMR_config_t RMR_config 90,1612
+static AVFrame * frame 101,1813
+static GMainLoop * main_loop;102,1844
+static playlist_entry_t * now_playing 103,1874
+static GdkWindow * main_window;104,1920
+static double jam_fdt 106,1972
+static int jam_repeat 107,2027
+static int jam_step 108,2088
+static int old_step 109,2158
+static double received_speed 110,2221
+static integrator_t * speed_integrator 111,2257
+static int brightness 113,2321
+static double pan_x 115,2380
+static GdkRectangle crop 116,2407
+static int jam_skip_current 118,2468
+static int jam_step_mode 119,2536
+static int jam_dir 120,2593
+static playlist_entry_t * last_x 122,2643
+void RMR_get_snap_ranges(132,2982
+static void update_playback_speed(138,3100
+static void play_entry(146,3284
+static void set_speed(159,3599
+static void set_playback_speed(165,3693
+static void toggle_playback_pause(177,3934
+static guint check_state(186,4070
+static void handle_key_press(191,4189
+static void handle_button(287,6875
+static void handle_motion(304,7190
+static void handle_gdk_events(317,7477
+static void jam_player_follow(337,7912
+static int pan_x_map(358,8392
+static void check_events(367,8629
+static int jam_intersection_frame(412,9470
+static void jam_check_cues(480,11715
+static int jam_player_iteration(498,12125
+static int integrate_received_speed(586,14180
+static void set_no_cursor(592,14318
+#define cursor1_width 594,14361
+#define cursor1_height 595,14386
+int main(615,15031
+
+xinemf.h,257
+#define _XINEMF_H_2,19
+#define SPEED_ITG_SIZE 9,148
+#define SPEED_ITG_INTERVAL 11,214
+} RMR_cue_target_t;RMR_cue_target_t25,603
+} RMR_config_t;RMR_config_t42,1072
+typedef struct integrator_t integrator_t85,2515
+} integrator_t;integrator_t92,2645
+
+y.tab.h,366
+# define YYTOKENTYPE28,1166
+   enum yytokentype yytokentype31,1290
+     UINT 32,1312
+     STRING 33,1329
+     FLOAT 34,1348
+#define UINT 37,1378
+#define STRING 38,1395
+#define FLOAT 39,1414
+typedef union YYSTYPE YYSTYPE46,1524
+} YYSTYPE;YYSTYPE54,1701
+# define yystype 57,1759
+# define YYSTYPE_IS_DECLARED 58,1821
+# define YYSTYPE_IS_TRIVIAL 59,1852
